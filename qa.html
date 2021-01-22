@@ -1,0 +1,24 @@
+{%extends 'template.html'%}
+{%block content%}
+<div>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    {% for category, message in messages %}
+    {% if category == 'message' %}
+    <div class="alert alert-warning-dismissible fade show" role="warning">
+        {% else %}
+        <div class="alert alert-{{ category}}-dismissible fade show" role="success">
+            {% endif %}
+            {{ message }}
+        </div>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+    </div>
+    <form id="bigForm" method='POST'>
+        <input type="text" id="user_text" name="user_text">
+        <br>
+        <br>
+        <button type="submit"> Submit text</button>
+    </form>
+{%endblock%}
